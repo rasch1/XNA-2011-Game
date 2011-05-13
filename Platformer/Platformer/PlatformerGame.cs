@@ -38,6 +38,7 @@ namespace Platformer
         private int levelIndex = -1;
         private Level level;
         private bool wasContinuePressed;
+        private FramePerSecond framePerSecond;
 
         // When the time remaining is less than the warning time, it blinks on the hud
         private static readonly TimeSpan WarningTime = TimeSpan.FromSeconds(30);
@@ -182,6 +183,7 @@ namespace Platformer
         {
             graphics.GraphicsDevice.Clear(Color.CornflowerBlue);
 
+            framePerSecond = new FramePerSecond(gameTime);
 
             spriteBatch.Begin();
 
@@ -219,8 +221,12 @@ namespace Platformer
 
             // Draw score
             float timeHeight = hudFont.MeasureString(timeString).Y;
+            float timeWidth = hudFont.MeasureString(timeString).X;
             DrawShadowedString(hudFont, "SCORE: " + level.Score.ToString(), hudLocation + new Vector2(0.0f, timeHeight * 1.2f), Color.Yellow);
+
+            DrawShadowedString(hudFont, "FPS: " + framePerSecond.fps, hudLocation + new Vector2(timeWidth * 1.2f, 0.0f), Color.Yellow);
            
+
             // Determine the status overlay message to show.
             Texture2D status = null;
             if (level.TimeRemaining == TimeSpan.Zero)
