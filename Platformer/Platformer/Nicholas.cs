@@ -7,5 +7,8 @@ namespace Platformer
 {
     class Nicholas
     {
+        public Nicholas()
+        {
+        }
     }
 }
