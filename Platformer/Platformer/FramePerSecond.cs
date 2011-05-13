@@ -17,12 +17,22 @@ namespace Platformer
     {
 
 
-        public float fps;
+        private float fps;
 
-        public FramePerSecond(GameTime time)
+        public float Fps
         {
-            this.fps = 1 / (float) time.ElapsedGameTime.TotalSeconds;
+            get { return fps; }
         }
+
+        public void setFps(GameTime time)
+        {
+            this.fps = 1 / (float)time.ElapsedGameTime.TotalSeconds; ;
+        }
+
+        public FramePerSecond()
+        {
+        }
+
 
     }
 

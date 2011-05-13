@@ -97,6 +97,7 @@ namespace Platformer
             }
             catch { }
 
+            framePerSecond = new FramePerSecond();
             LoadNextLevel();
         }
 
@@ -113,7 +114,7 @@ namespace Platformer
             // update our level, passing down the GameTime along with all of our input states
             level.Update(gameTime, keyboardState, gamePadState, touchState, 
                          accelerometerState, Window.CurrentOrientation);
-
+            framePerSecond.setFps(gameTime);
             base.Update(gameTime);
         }
 
@@ -183,8 +184,6 @@ namespace Platformer
         {
             graphics.GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            framePerSecond = new FramePerSecond(gameTime);
-
             spriteBatch.Begin();
 
             level.Draw(gameTime, spriteBatch);
@@ -224,7 +223,7 @@ namespace Platformer
             float timeWidth = hudFont.MeasureString(timeString).X;
             DrawShadowedString(hudFont, "SCORE: " + level.Score.ToString(), hudLocation + new Vector2(0.0f, timeHeight * 1.2f), Color.Yellow);
 
-            DrawShadowedString(hudFont, "FPS: " + framePerSecond.fps, hudLocation + new Vector2(timeWidth * 1.2f, 0.0f), Color.Yellow);
+            DrawShadowedString(hudFont, "FPS: " + framePerSecond.Fps, hudLocation + new Vector2(timeWidth * 1.2f, 0.0f), Color.Yellow);
            
 
             // Determine the status overlay message to show.
