@@ -7,8 +7,9 @@ namespace Platformer
 {
     class Nicholas
     {
-        public Nicholas()
+        public Nicholas(String test)
         {
+            test = "replacing with github";
         }
     }
 }
